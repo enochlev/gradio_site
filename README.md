@@ -22,8 +22,19 @@ cd gradio_site
 # Install dependencies
 pip install -r requirements.txt
 
+# Launch app
+gradio main.py
+```
 
-# VLLM_USE_V1=1 vllm serve /home/enochlev/Documents/School/childs/gemma-3-1b-pt-human --max-model-len 2048 --max-num-seqs 1 --gpu-memory-utilization .2 --port 9300 --served-model-name gemma-3-1b-pt-human --no-enable-prefix-caching --max-num-batched-tokens 2048 --max-seq-len-to-capture 2048 --disable-log-stats
-# VLLM_USE_V1=1 vllm serve /home/enochlev/Documents/School/childs/gemma-3-1b-it-toxicity --max-model-len 1024 --max-num-seqs 1 --max_num_batched_tokens 1024 --gpu-memory-utilization .35 --port 9301 --served-model-name gemma-3-1b-it-toxicity --no-enable-prefix-caching --max-num-batched-tokens 1024 --max-seq-len-to-capture 1024 --disable-log-stats
-# VLLM_USE_V1=1 vllm serve google/gemma-3-1b-pt --max-model-len 2048 --max-num-seqs 1 --gpu-memory-utilization .5 --port 9302 --served-model-name gemma-3-1b-pt --no-enable-prefix-caching --max-num-batched-tokens 2048 --max-seq-len-to-capture 2048 --disable-log-stats
-# VLLM_USE_V1=1 vllm serve google/gemma-3-1b-it --max-model-len 1024 --max-num-seqs 1 --max_num_batched_tokens 1024 --gpu-memory-utilization .65 --port 9303 --served-model-name gemma-3-1b-it --no-enable-prefix-caching --max-num-batched-tokens 1024 --max-seq-len-to-capture 1024 --disable-log-stats
+
+Code used to launch vllm servers
+```
+VLLM_USE_V1=1 vllm serve enochlev/gemma-3-1b-pt-human --max-model-len 2048 --max-num-seqs 1 --gpu-memory-utilization .2 --port 9300 --served-model-name gemma-3-1b-pt-human --no-enable-prefix-caching --max-num-batched-tokens 2048 --max-seq-len-to-capture 2048 --disable-log-stats
+
+
+
+VLLM_USE_V1=1 vllm serve enochlev/gemma-3-1b-it-toxicity --max-model-len 1024 --max-num-seqs 1 --max_num_batched_tokens 1024 --gpu-memory-utilization .35 --port 9301 --served-model-name gemma-3-1b-it-toxicity --no-enable-prefix-caching --max-num-batched-tokens 1024 --max-seq-len-to-capture 1024 --disable-log-stats
+
+
+VLLM_USE_V1=1 vllm serve google/gemma-3-1b-it --max-model-len 2048 --max-num-seqs 1 --gpu-memory-utilization .5 --port 9302 --served-model-name gemma-3-1b-it --no-enable-prefix-caching --max-num-batched-tokens 2048 --max-seq-len-to-capture 2048 --disable-log-stats
+```
