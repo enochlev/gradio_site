@@ -16,7 +16,7 @@ HUE_SCALE = 1.0
 clients = {}
 
 clients["gemma-3-1b-pt-human"] = {
-    "client": openai.OpenAI(base_url="http://0.0.0.0:9300/v1", api_key="EMPTY"),
+    "client": openai.OpenAI(base_url="http://0.0.0.0:9303/v1", api_key="EMPTY"),
     "chatbot_model": "gemma-3-1b-pt-human"
 }
 
@@ -32,7 +32,7 @@ clients["gemma-3-1b-it"] = {
 }
 
 clients["gemma-3-1b-pt"] = {
-    "client": openai.OpenAI(base_url="http://0.0.0.0:9303/v1", api_key="EMPTY"),
+    "client": openai.OpenAI(base_url="http://0.0.0.0:9300/v1", api_key="EMPTY"),
     "chatbot_model": "gemma-3-1b-pt"
 }
 
@@ -249,10 +249,11 @@ def generate_bot_score_html(score):
 
 # Modified completion function with toxicity highlighting and bot score
 def completion_with_openai(text):
+    text = " ".join(text.split(" ")[:100])
     try:  
         # Get logprobs for the prompt
-        base = clients["gemma-3-1b-it"]["client"].completions.create(
-            model=clients["gemma-3-1b-it"]["chatbot_model"],
+        base = clients["gemma-3-1b-pt"]["client"].completions.create(
+            model=clients["gemma-3-1b-pt"]["chatbot_model"],
             prompt=text,
             logprobs=1,
             echo=True,
@@ -389,7 +390,7 @@ with gr.Blocks(theme="soft") as demo:
             
         
         # Completion tab with HTML-highlighted text
-        with gr.Tab("Toxicity Detection"):
+        with gr.Tab("Toxicity Detection", visible=False):
             gr.Markdown("# OpenAI Chat with Toxicity Highlighting")
             chatbot = gr.Chatbot(height=500)#, #type="messages")
             with gr.Row():
