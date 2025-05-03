@@ -217,6 +217,7 @@ def calculate_bot_score(diffs):
 
 # Generate HTML for bot score display
 def generate_bot_score_html(score):
+    score *= .8
     # Determine color based on score (keeping your existing color logic)
     if score > 75:
         color = "#d9534f"  # Red for high bot score
@@ -224,10 +225,10 @@ def generate_bot_score_html(score):
     elif score > 60:
         color = "#f0ad4e"  # Orange for moderately bot-like
         label = "Moderately Bot-Like"
-    elif score < 25:
+    elif score < 35:
         color = "#5cb85c"  # Green for very human
         label = "Very Human-Like"
-    elif score < 40:
+    elif score < 50:
         color = "#5bc0de"  # Blue for moderately human
         label = "Moderately Human-Like"
     else:
